@@ -68,16 +68,18 @@ public class application {
                 double depositAmount = userInput.nextDouble();
                 userInput.nextLine();
 
-                Deposit deposit = new Deposit(depositDescription, depositVendor, depositAmount);
+                TransActions deposit = new TransActions(depositDescription, depositVendor, depositAmount);
                 deposit.logDeposit();
-
-                //System.out.printf(" %s | %s | $%.2f \n",depositDescription, depositVendor, depositAmount );
+                
                 return;
             }
             catch (InputMismatchException e)
             {
                 System.out.println();
                 System.out.println("Invalid input");
+
+                // consumes invalid input, so it doesn't get stored into deposit description
+                userInput.nextLine();
             }
             catch (Exception e)
             {
@@ -90,7 +92,44 @@ public class application {
 
     private void makePayment()
     {
-        System.out.println("Making payment");
+        while (true)
+        {
+            try
+            {
+                System.out.println();
+                System.out.print("Enter payment description: ");
+                String paymentDescription = userInput.nextLine();
+
+                System.out.println();
+                System.out.print("Enter payment vendor: ");
+                String paymentVendor = userInput.nextLine();
+
+                System.out.println();
+                System.out.print("Enter payment amount: ");
+                double paymentAmount = userInput.nextDouble();
+                userInput.nextLine();
+                paymentAmount = paymentAmount * -1;
+
+                TransActions payment = new TransActions(paymentDescription, paymentVendor, paymentAmount);
+                payment.logPayment();
+                
+                return;
+            }
+            catch (InputMismatchException e)
+            {
+                System.out.println();
+                System.out.println("Invalid input");
+
+                // consumes invalid input, so it doesn't get stored into deposit description
+                userInput.nextLine();
+            }
+            catch (Exception e)
+            {
+                System.out.println();
+                System.out.println("Something went wrong");
+                e.printStackTrace();
+            }
+        }
     }
 
     private void ledgerScreen()
