@@ -47,6 +47,7 @@ public class TransActions {
 
         File transactionLogs = new File(LOG_DIRECTORY + "\\"  + FILE_NAME);
 
+        // reading the file
         try(
                 FileWriter fileWriter = new FileWriter(transactionLogs, true);
                 PrintWriter writer = new PrintWriter(fileWriter);
@@ -79,12 +80,13 @@ public class TransActions {
 
         File transactionLogs = new File(LOG_DIRECTORY + "\\"  + FILE_NAME);
 
+        // reading the file
         try(
                 FileWriter fileWriter = new FileWriter(transactionLogs, true);
                 PrintWriter writer = new PrintWriter(fileWriter);
         )
         {
-            // logging the deposit info to the transaction file with date and time
+            // logging the payment info to the transaction file with date and time
             writer.printf(" %s | %s | %s | %s | %s | $%.2f \n", date.format(DATE_FORMAT), time.format(TIME_FORMAT),transActionType , Description, vendor, amount);
 
             System.out.println();

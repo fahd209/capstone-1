@@ -1,2 +1,11 @@
- date| time | description | trans action type | vender | amount
-
+ date| time | transaction type | description | vender | amount
+ 2024-04-01 | 16:22:26 | Deposit | testing | test | $5600.00
+ 2024-04-28 | 16:22:26 | Deposit | crypto | me | $5600.00
+ 2024-04-28 | 16:24:22 | withdrawal | fastfood | h | $-6.00
+ 2024-04-29 | 09:12:52 | Deposit | paycheck | amazon | $500.00
+ 2024-04-29 | 11:15:20 | withdrawal | gas | gas station | $-80.00 
+ 2024-04-29 | 13:23:50 | Deposit | testing | test | $500.00 
+ 2024-04-29 | 13:24:34 | withdrawal | testing | test | $-500.00 
+ 2024-04-29 | 13:55:16 | Deposit | paycheck april | amazon | $2500.00 
+ 2024-04-29 | 13:55:41 | withdrawal | car payment | toyota | $-250.00
+ 2024-04-30 | 13:55:41 | withdrawal | testing | test | $-250.00
