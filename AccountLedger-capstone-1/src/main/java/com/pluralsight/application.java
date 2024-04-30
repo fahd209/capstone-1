@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class application {
@@ -239,7 +240,7 @@ public class application {
             {
                 System.out.println();
                 System.out.println("Reports");
-                System.out.println("----------");
+                System.out.println("-------------------");
                 System.out.println("1) Month To Date");
                 System.out.println("2) Previous Month");
                 System.out.println("3) Year To date");
@@ -276,6 +277,7 @@ public class application {
             }
             catch (InputMismatchException e)
             {
+                userInput.nextLine();
                 System.out.println("Invalid input please enter a number");
             }
             catch (Exception e)
@@ -289,19 +291,33 @@ public class application {
 
     public void getMonthToDateReports()
     {
+        // getting Month to date reports by calling my method getMonthToDate reports and storing it inside the list
         Reports reports = new Reports();
-        ArrayList<Entry> monthToDateReports = reports.getMonthToDate();
+        List<Entry> monthToDateReports = reports.getMonthToDate();
 
+        System.out.println("                                                   Month to date reports                                                               ");
+        System.out.println("-".repeat(140));
         for(int i = 0; i < monthToDateReports.size(); i++)
         {
-            Entry reportsObj = monthToDateReports.get(i);
-            System.out.printf(" %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \n", reportsObj.getDate(), reportsObj.getTime(), reportsObj.getTransActionType(), reportsObj.getDescription(), reportsObj.getVendor(), reportsObj.getAmount());
+            Entry MonthToDateTransaction = monthToDateReports.get(i);
+            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", MonthToDateTransaction.getDate(), MonthToDateTransaction.getTime(), MonthToDateTransaction.getTransActionType(), MonthToDateTransaction.getDescription(), MonthToDateTransaction.getVendor(), MonthToDateTransaction.getAmount());
+            System.out.println("-".repeat(140));
         }
     }
 
     public void getPreviousMonthReports()
     {
+        Reports reports = new Reports();
+        List<Entry> previousMonthReports = reports.getPreviousMonth();
 
+        System.out.println("                                                   Previous Month Report's                                                               ");
+        System.out.println("-".repeat(140));
+        for(int i = 0; i < previousMonthReports.size(); i++)
+        {
+            Entry previousMonthTransactions = previousMonthReports.get(i);
+            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", previousMonthTransactions.getDate(), previousMonthTransactions.getTime(), previousMonthTransactions.getTransActionType(), previousMonthTransactions.getDescription(), previousMonthTransactions.getVendor(), previousMonthTransactions.getAmount());
+            System.out.println("-".repeat(140));
+        }
     }
 
     public void getYearToDateReports()
