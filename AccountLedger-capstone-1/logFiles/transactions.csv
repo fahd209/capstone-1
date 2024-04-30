@@ -1,21 +1,24 @@
  date| time | transaction type | description | vender | amount
- 2023-12-04 | 16:22:26 | Deposit | testing | test | $5600.00
- 2024-01-04 | 16:22:26 | Deposit | testing | test | $5600.00
- 2024-03-04 | 16:22:26 | Deposit | testing | test | $5600.00
- 2024-04-01 | 16:22:26 | Deposit | testing | test | $5600.00
- 2024-04-28 | 16:22:26 | Deposit | crypto | me | $5600.00
- 2024-04-28 | 16:24:22 | withdrawal | fastfood | h | $-6.00
- 2024-04-29 | 09:12:52 | Deposit | paycheck | amazon | $500.00
- 2024-04-29 | 11:15:20 | withdrawal | gas | gas station | $-80.00 
- 2024-04-29 | 13:23:50 | Deposit | testing | test | $500.00 
- 2024-04-29 | 13:24:34 | withdrawal | testing | test | $-500.00 
- 2024-04-29 | 13:55:16 | Deposit | paycheck april | amazon | $2500.00 
- 2024-04-29 | 13:55:41 | withdrawal | car payment | toyota | $-250.00
- 2024-05-01 | 13:55:41 | withdrawal | testing | test | $-250.00
- 2024-03-15 | 16:22:26 | Deposit | testing | test | $5600.00
- 2024-04-30 | 11:07:16 | Deposit | d | d | $50.00 
- 2024-04-30 | 11:07:52 | withdrawal | p | p | $-50.00 
- 2024-04-30 | 11:18:08 | Deposit | colors | library | $100.00 
- 2024-04-30 | 11:18:34 | Deposit | idk | me | $100.00 
- 2024-04-30 | 11:20:39 | withdrawal | red | color | $-50.00 
- 2024-04-30 | 11:25:24 | withdrawal | car | car dealer | $-20000.00 
+2023-07-15 | 09:45:12 | Deposit | Salary |  | $850.00
+2023-09-28 | 14:20:55 | Withdrawal | Grocery | safeway | -$700.00
+2023-10-10 | 11:12:30 | Deposit | Freelance Work | Website client | $950.00
+2023-11-05 | 16:55:40 | Withdrawal | Apartment rent | apartment | -$800.00
+2023-12-01 | 13:30:18 | Deposit | Savings | Savings transfer | $500.00
+2024-01-10 | 09:00:00 | Deposit | Web Development | Client | $950.00
+2024-03-05 | 12:30:45 | Withdrawal | Groceries | Fresh Mart | -$700.00
+2024-04-15 | 15:45:20 | Deposit | Monthly income | Consulting Service | $850.00
+2024-04-20 | 10:20:35 | Withdrawal | Rent Payment | Real Estate Agency | -$800.00
+2024-04-25 | 09:10:50 | Deposit | Emergency Fund | Savings transfer | $500.00
+2024-03-05 | 08:45:00 | Deposit | Graphic Design | Client | $720.00
+2024-03-10 | 11:20:30 | Withdrawal | Dining Out | red lobster | -$65.00
+2024-03-15 | 14:30:20 | Deposit | Tutoring Service | Private Student | $600.00
+2024-03-20 | 16:10:45 | Withdrawal | Shopping | Fashion Store | -$350.00
+2024-03-25 | 09:55:10 | Deposit | Investment Dividend | Stock market | $900.00
+2024-04-01 | 10:15:00 | Deposit | Consulting Fee | Client | $850.00
+2024-04-06 | 13:30:45 | Withdrawal | Electronics Purchase | amazon | -$750.00
+2024-04-11 | 16:20:20 | Deposit | Side Project Payment | client | $600.00
+2024-04-16 | 09:40:35 | Withdrawal | Medical Expenses | Hospital | -$450.00
+2024-04-21 | 11:25:50 | Deposit | Gift Money | Family Member | $550.00
+ 2024-04-30 | 15:21:56 | withdrawal | gas | Arco | $-60.00 
+ 2024-04-30 | 15:22:34 | withdrawal | gym memebership  | planet fitness | $-10.00 
+ 2024-04-30 | 15:22:56 | Deposit | paycheck | amazon | $500.00 

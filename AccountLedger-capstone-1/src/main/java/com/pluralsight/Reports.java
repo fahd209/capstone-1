@@ -77,6 +77,7 @@ public class Reports {
     {
         LoadEntries loadEntries = new LoadEntries();
         ArrayList<Entry> allTransactions = loadEntries.loadAllEntries();
+
         List<Entry> previousYearTransactions = new ArrayList<>();
         LocalDate currentDate = LocalDate.now();
         LocalDate firstDayOfPreviousYear = LocalDate.of(currentDate.getYear() -1, 1, 1);

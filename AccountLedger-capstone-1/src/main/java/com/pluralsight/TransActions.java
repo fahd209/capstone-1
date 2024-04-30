@@ -50,7 +50,7 @@ public class TransActions {
         // reading the file
         try(
                 FileWriter fileWriter = new FileWriter(transactionLogs, true);
-                PrintWriter writer = new PrintWriter(fileWriter);
+                PrintWriter writer = new PrintWriter(fileWriter)
         )
         {
             // logging the deposit info to the transaction file with date and time

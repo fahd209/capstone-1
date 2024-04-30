@@ -197,12 +197,12 @@ public class application {
         //displaying out all entries
         System.out.println();
         System.out.println("                              All entry's                    ");
-        System.out.println("-".repeat(80));
+        System.out.println("-".repeat(140));
         for (int i = 0; i < entries.size(); i++)
         {
             Entry entry = entries.get(i);
-            System.out.printf(" \u001B[34m %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \u001B[0m \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
-            System.out.println("-".repeat(80));
+            System.out.printf(" \u001B[34m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
+            System.out.println("-".repeat(140));
         }
 
     }
@@ -216,12 +216,12 @@ public class application {
 
         System.out.println();
         System.out.println("                              All deposits                    ");
-        System.out.println("-".repeat(80));
+        System.out.println("-".repeat(140));
         for(int i = 0; i < allDeposits.size(); i++)
         {
             Entry deposits = allDeposits.get(i);
-            System.out.printf(" \u001B[32m %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \u001B[0m \n", deposits.getDate(), deposits.getTime(), deposits.getTransActionType(), deposits.getDescription(), deposits.getVendor(), deposits.getAmount());
-            System.out.println("-".repeat(80));
+            System.out.printf(" \u001B[32m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", deposits.getDate(), deposits.getTime(), deposits.getTransActionType(), deposits.getDescription(), deposits.getVendor(), deposits.getAmount());
+            System.out.println("-".repeat(140));
         }
 
     }
@@ -235,12 +235,12 @@ public class application {
 
         System.out.println();
         System.out.println("                              All payments                       ");
-        System.out.println("-".repeat(80));
+        System.out.println("-".repeat(140));
         for(int i = 0; i < allPayments.size(); i++)
         {
             Entry payment = allPayments.get(i);
-            System.out.printf(" \u001B[31m %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \u001B[0m \n", payment.getDate(), payment.getTime(), payment.getTransActionType(), payment.getDescription(), payment.getVendor(), payment.getAmount());
-            System.out.println("-".repeat(80));
+            System.out.printf(" \u001B[31m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", payment.getDate(), payment.getTime(), payment.getTransActionType(), payment.getDescription(), payment.getVendor(), payment.getAmount());
+            System.out.println("-".repeat(140));
         }
 
     }
@@ -318,6 +318,11 @@ public class application {
             System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", MonthToDateTransaction.getDate(), MonthToDateTransaction.getTime(), MonthToDateTransaction.getTransActionType(), MonthToDateTransaction.getDescription(), MonthToDateTransaction.getVendor(), MonthToDateTransaction.getAmount());
             System.out.println("-".repeat(140));
         }
+
+        if(monthToDateReports.size() == 0)
+        {
+            System.out.println("Month to date reports not found");
+        }
     }
 
     public void getPreviousMonthReports()
@@ -332,6 +337,11 @@ public class application {
             Entry previousMonthTransactions = previousMonthReports.get(i);
             System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", previousMonthTransactions.getDate(), previousMonthTransactions.getTime(), previousMonthTransactions.getTransActionType(), previousMonthTransactions.getDescription(), previousMonthTransactions.getVendor(), previousMonthTransactions.getAmount());
             System.out.println("-".repeat(140));
+        }
+
+        if(previousMonthReports.size() == 0)
+        {
+            System.out.println("Previous months reports not found");
         }
     }
 
@@ -348,6 +358,11 @@ public class application {
             System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", yearToDay.getDate(), yearToDay.getTime(), yearToDay.getTransActionType(), yearToDay.getDescription(), yearToDay.getVendor(), yearToDay.getAmount());
             System.out.println("-".repeat(140));
         }
+
+        if(yearToDateReports.size() == 0)
+        {
+            System.out.println("Year to date reports not found");
+        }
     }
 
     public void getPreviousYear()
@@ -362,6 +377,11 @@ public class application {
             Entry previousYear = previousYearReports.get(i);
             System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", previousYear.getDate(), previousYear.getTime(), previousYear.getTransActionType(), previousYear.getDescription(), previousYear.getVendor(), previousYear.getAmount());
             System.out.println("-".repeat(140));
+        }
+
+        if(previousYearReports.size() == 0)
+        {
+            System.out.println("Previous year's report's not found");
         }
     }
 
@@ -380,7 +400,7 @@ public class application {
         for (int i = 0; i < reportsByVendor.size(); i++)
         {
             Entry transactionsByVendor = reportsByVendor.get(i);
-            System.out.printf("\u001B[31m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", transactionsByVendor.getDate(), transactionsByVendor.getTime(), transactionsByVendor.getTransActionType(), transactionsByVendor.getDescription(), transactionsByVendor.getVendor(), transactionsByVendor.getAmount());
+            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", transactionsByVendor.getDate(), transactionsByVendor.getTime(), transactionsByVendor.getTransActionType(), transactionsByVendor.getDescription(), transactionsByVendor.getVendor(), transactionsByVendor.getAmount());
             System.out.println("-".repeat(140));
         }
 

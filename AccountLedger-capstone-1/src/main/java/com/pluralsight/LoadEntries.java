@@ -26,7 +26,7 @@ public class LoadEntries
         // reading the transactions file
         try(
                 FileReader filereader = new FileReader(file);
-                Scanner reader = new Scanner(filereader);
+                Scanner reader = new Scanner(filereader)
                 )
         {
             // skipping the first line
@@ -76,7 +76,7 @@ public class LoadEntries
         // reading the transactions file
         try(
                 FileReader filereader = new FileReader(file);
-                Scanner reader = new Scanner(filereader);
+                Scanner reader = new Scanner(filereader)
         )
         {
             // skipping the first line
@@ -131,7 +131,7 @@ public class LoadEntries
         // reading the transactions file
         try(
                 FileReader filereader = new FileReader(file);
-                Scanner reader = new Scanner(filereader);
+                Scanner reader = new Scanner(filereader)
         )
         {
             // skipping the first line
