@@ -1,4 +1,6 @@
  date| time | transaction type | description | vender | amount
+ 2023-12-04 | 16:22:26 | Deposit | testing | test | $5600.00
+ 2024-01-04 | 16:22:26 | Deposit | testing | test | $5600.00
  2024-03-04 | 16:22:26 | Deposit | testing | test | $5600.00
  2024-04-01 | 16:22:26 | Deposit | testing | test | $5600.00
  2024-04-28 | 16:22:26 | Deposit | crypto | me | $5600.00
@@ -9,4 +11,11 @@
  2024-04-29 | 13:24:34 | withdrawal | testing | test | $-500.00 
  2024-04-29 | 13:55:16 | Deposit | paycheck april | amazon | $2500.00 
  2024-04-29 | 13:55:41 | withdrawal | car payment | toyota | $-250.00
- 2024-04-30 | 13:55:41 | withdrawal | testing | test | $-250.00
+ 2024-05-01 | 13:55:41 | withdrawal | testing | test | $-250.00
+ 2024-03-15 | 16:22:26 | Deposit | testing | test | $5600.00
+ 2024-04-30 | 11:07:16 | Deposit | d | d | $50.00 
+ 2024-04-30 | 11:07:52 | withdrawal | p | p | $-50.00 
+ 2024-04-30 | 11:18:08 | Deposit | colors | library | $100.00 
+ 2024-04-30 | 11:18:34 | Deposit | idk | me | $100.00 
+ 2024-04-30 | 11:20:39 | withdrawal | red | color | $-50.00 
+ 2024-04-30 | 11:25:24 | withdrawal | car | car dealer | $-20000.00 

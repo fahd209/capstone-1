@@ -68,13 +68,20 @@ public class application {
 
                 System.out.println();
                 System.out.print("Enter deposit amount: ");
-                double depositAmount = userInput.nextDouble();
-                userInput.nextLine();
+                String depositInput = userInput.nextLine();
 
-                TransActions deposit = new TransActions(depositDescription, depositVendor, depositAmount);
-                deposit.logDeposit();
-                
-                return;
+                if(!depositInput.equals(""))
+                {
+                    double depositAmount = Double.parseDouble(depositInput);
+                    TransActions deposit = new TransActions(depositDescription, depositVendor, depositAmount);
+                    deposit.logDeposit();
+                    return;
+                }
+                else
+                {
+                    System.out.println("If you skip the payment amount it will not get be added to the transactions");
+                }
+
             }
             catch (InputMismatchException e)
             {
@@ -109,14 +116,21 @@ public class application {
 
                 System.out.println();
                 System.out.print("Enter payment amount: ");
-                double paymentAmount = userInput.nextDouble();
-                userInput.nextLine();
-                paymentAmount = paymentAmount * -1;
+                String paymentInput = userInput.nextLine();
+                //userInput.nextLine();
 
-                TransActions payment = new TransActions(paymentDescription, paymentVendor, paymentAmount);
-                payment.logPayment();
-                
-                return;
+                if(!paymentInput.equals(""))
+                {
+                    double paymentAmount = Double.parseDouble(paymentInput);
+                    paymentAmount = paymentAmount * -1;
+                    TransActions payment = new TransActions(paymentDescription, paymentVendor, paymentAmount);
+                    payment.logPayment();
+                    return;
+                }
+                else
+                {
+                    System.out.println("If you skip the payment amount it will not get be added to the transactions");
+                }
             }
             catch (InputMismatchException e)
             {
@@ -187,7 +201,7 @@ public class application {
         for (int i = 0; i < entries.size(); i++)
         {
             Entry entry = entries.get(i);
-            System.out.printf(" %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
+            System.out.printf(" \u001B[34m %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \u001B[0m \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
             System.out.println("-".repeat(80));
         }
 
@@ -206,7 +220,7 @@ public class application {
         for(int i = 0; i < allDeposits.size(); i++)
         {
             Entry deposits = allDeposits.get(i);
-            System.out.printf(" %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \n", deposits.getDate(), deposits.getTime(), deposits.getTransActionType(), deposits.getDescription(), deposits.getVendor(), deposits.getAmount());
+            System.out.printf(" \u001B[32m %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \u001B[0m \n", deposits.getDate(), deposits.getTime(), deposits.getTransActionType(), deposits.getDescription(), deposits.getVendor(), deposits.getAmount());
             System.out.println("-".repeat(80));
         }
 
@@ -225,7 +239,7 @@ public class application {
         for(int i = 0; i < allPayments.size(); i++)
         {
             Entry payment = allPayments.get(i);
-            System.out.printf(" %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \n", payment.getDate(), payment.getTime(), payment.getTransActionType(), payment.getDescription(), payment.getVendor(), payment.getAmount());
+            System.out.printf(" \u001B[31m %-10s | %-10s | %-10s | %-10s | %-10s | $%-10.2f \u001B[0m \n", payment.getDate(), payment.getTime(), payment.getTransActionType(), payment.getDescription(), payment.getVendor(), payment.getAmount());
             System.out.println("-".repeat(80));
         }
 
@@ -263,10 +277,10 @@ public class application {
                         getYearToDateReports();
                         break;
                     case 4:
-                        System.out.println("Previous year");
+                        getPreviousYear();
                         break;
                     case 5:
-                        System.out.println("Searching by vendor");
+                        searchByVendor();
                         break;
                     case 0:
                         break;
@@ -278,6 +292,7 @@ public class application {
             catch (InputMismatchException e)
             {
                 userInput.nextLine();
+                System.out.println();
                 System.out.println("Invalid input please enter a number");
             }
             catch (Exception e)
@@ -322,6 +337,56 @@ public class application {
 
     public void getYearToDateReports()
     {
+        Reports reports = new Reports();
+        List<Entry> yearToDateReports = reports.getYearToDay();
 
+        System.out.println("                                                   Year to day reports                                                               ");
+        System.out.println("-".repeat(140));
+        for (int i = 0; i < yearToDateReports.size(); i++)
+        {
+            Entry yearToDay = yearToDateReports.get(i);
+            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", yearToDay.getDate(), yearToDay.getTime(), yearToDay.getTransActionType(), yearToDay.getDescription(), yearToDay.getVendor(), yearToDay.getAmount());
+            System.out.println("-".repeat(140));
+        }
+    }
+
+    public void getPreviousYear()
+    {
+        Reports reports = new Reports();
+        List<Entry> previousYearReports = reports.getPreviousYear();
+
+        System.out.println("                                                  Previous year reports                                                              ");
+        System.out.println("-".repeat(140));
+        for (int i = 0; i < previousYearReports.size(); i++)
+        {
+            Entry previousYear = previousYearReports.get(i);
+            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", previousYear.getDate(), previousYear.getTime(), previousYear.getTransActionType(), previousYear.getDescription(), previousYear.getVendor(), previousYear.getAmount());
+            System.out.println("-".repeat(140));
+        }
+    }
+
+    public void searchByVendor()
+    {
+        Reports reports = new Reports();
+        System.out.println();
+        System.out.print("Enter the vendor name: ");
+        String vendor = userInput.nextLine().strip();
+        List<Entry> reportsByVendor = reports.searchByVendor(vendor);
+
+        System.out.println();
+        System.out.println("Vendor's name: " + vendor);
+        System.out.println("                                                  Report's by vendor                                                              ");
+        System.out.println("-".repeat(140));
+        for (int i = 0; i < reportsByVendor.size(); i++)
+        {
+            Entry transactionsByVendor = reportsByVendor.get(i);
+            System.out.printf("\u001B[31m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", transactionsByVendor.getDate(), transactionsByVendor.getTime(), transactionsByVendor.getTransActionType(), transactionsByVendor.getDescription(), transactionsByVendor.getVendor(), transactionsByVendor.getAmount());
+            System.out.println("-".repeat(140));
+        }
+
+        if(reportsByVendor.size() == 0)
+        {
+            System.out.println("Vendors not found");
+        }
     }
 }

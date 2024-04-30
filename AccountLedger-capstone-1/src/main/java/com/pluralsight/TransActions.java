@@ -57,7 +57,7 @@ public class TransActions {
             writer.printf(" %s | %s | %s | %s | %s | $%.2f \n", date.format(DATE_FORMAT), time.format(TIME_FORMAT),transActionType , Description, vendor, amount);
 
             System.out.println();
-            System.out.printf("$%.2f deposit from %s ", amount, vendor);
+            System.out.printf("\u001B[32m $%.2f \u001B[0m deposit from %s ", amount, vendor);
             System.out.println();
         }
         catch (IOException e)
@@ -90,7 +90,7 @@ public class TransActions {
             writer.printf(" %s | %s | %s | %s | %s | $%.2f \n", date.format(DATE_FORMAT), time.format(TIME_FORMAT),transActionType , Description, vendor, amount);
 
             System.out.println();
-            System.out.printf("$%.2f payment to %s ", amount, vendor);
+            System.out.printf("\u001B[31m $%.2f \u001B[0m payment to %s ", amount, vendor);
             System.out.println();
         }
         catch (IOException e)
