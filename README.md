@@ -22,6 +22,8 @@ Code used to add the deposit functionalty:
 ```java
 public void logDeposit()
     {
+        transActionType = "Deposit";
+
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
@@ -34,15 +36,17 @@ public void logDeposit()
 
         File transactionLogs = new File(LOG_DIRECTORY + "\\"  + FILE_NAME);
 
+        // reading the file
         try(
                 FileWriter fileWriter = new FileWriter(transactionLogs, true);
-                PrintWriter writer = new PrintWriter(fileWriter);
+                PrintWriter writer = new PrintWriter(fileWriter)
         )
         {
             // logging the deposit info to the transaction file with date and time
-            writer.printf(" %s | %s | %s | %s | $%.2f \n", date.format(DATE_FORMAT), time.format(TIME_FORMAT), depositDescription, vendor, amount);
+            writer.printf(" %s | %s | %s | %s | %s | $%.2f \n", date.format(DATE_FORMAT), time.format(TIME_FORMAT),transActionType , Description, vendor, amount);
+
             System.out.println();
-            System.out.printf("$%.2f deposit from %s ", amount, vendor);
+            System.out.printf("\u001B[32m $%.2f \u001B[0m deposit from %s ", amount, vendor);
             System.out.println();
         }
         catch (IOException e)
@@ -54,7 +58,6 @@ public void logDeposit()
             System.out.println("Something went wrong");
             e.printStackTrace();
         }
-
     }
 ```
 

@@ -196,7 +196,7 @@ public class application {
 
         //displaying out all entries
         System.out.println();
-        System.out.println("                              All entry's                    ");
+        System.out.println("                                                                All entry's                    ");
         System.out.println("-".repeat(140));
         for (int i = 0; i < entries.size(); i++)
         {
@@ -215,7 +215,7 @@ public class application {
         ArrayList<Entry> allDeposits = loadEntries.loadAllDeposits();
 
         System.out.println();
-        System.out.println("                              All deposits                    ");
+        System.out.println("                                                              All deposits                                        ");
         System.out.println("-".repeat(140));
         for(int i = 0; i < allDeposits.size(); i++)
         {
@@ -234,7 +234,7 @@ public class application {
         ArrayList<Entry> allPayments = loadEntries.loadAllPayments();
 
         System.out.println();
-        System.out.println("                              All payments                       ");
+        System.out.println("                                                          All payments                                                   ");
         System.out.println("-".repeat(140));
         for(int i = 0; i < allPayments.size(); i++)
         {
@@ -339,7 +339,7 @@ public class application {
             System.out.println("-".repeat(140));
         }
 
-        if(previousMonthReports.size() == 0)
+        if(previousMonthReports.isEmpty())
         {
             System.out.println("Previous months reports not found");
         }
@@ -359,7 +359,7 @@ public class application {
             System.out.println("-".repeat(140));
         }
 
-        if(yearToDateReports.size() == 0)
+        if(yearToDateReports.isEmpty())
         {
             System.out.println("Year to date reports not found");
         }
@@ -367,6 +367,7 @@ public class application {
 
     public void getPreviousYear()
     {
+        // getting previous year reports from getPreviousYear method in my reports class
         Reports reports = new Reports();
         List<Entry> previousYearReports = reports.getPreviousYear();
 
@@ -379,7 +380,7 @@ public class application {
             System.out.println("-".repeat(140));
         }
 
-        if(previousYearReports.size() == 0)
+        if(previousYearReports.isEmpty())
         {
             System.out.println("Previous year's report's not found");
         }
@@ -404,7 +405,7 @@ public class application {
             System.out.println("-".repeat(140));
         }
 
-        if(reportsByVendor.size() == 0)
+        if(reportsByVendor.isEmpty())
         {
             System.out.println("Vendors not found");
         }
