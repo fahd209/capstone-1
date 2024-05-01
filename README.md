@@ -186,4 +186,34 @@ public List<Entry> getPreviousMonth()
     }
 ```
 
-## Instruction's on how to use the application
+# Instruction's on how to use the application
+## Home Screen
+When the application starts this how it will look.
+![homescreen](images/homescreen.png)
+
+1) Enter "D" to add a deposit. you will be prompted for deposit amount, description, and vendor.
+2) Enter "P" to make a payment. You will be prompted for the payment amount, description, and vendor.
+3) Enter "L" to display the ledger screen.
+4) Enter "X" to exit the application. 
+
+## Ledger Screen
+![LedgerScreen](images/ledger-screen.png)
+
+1) Enter "A" to display all entries
+![Transactions](images/allTransactions.png)
+2) Enter "D" to display all deposits
+3) Enter "P" to display all payments
+4) Enter "R" to go to the reports screen
+5) Enter "H" to go back to home screen
+
+## Reports screen
+![reportScreen](images/reportsScreen.png)
+
+1) Enter "1" to get reports from month to date.
+2) Enter "2" to get reports from previous month.
+3) Enter "3" to get reports from Year to date.
+4) Enter "4" to get reports from Previous year
+5) Enter "5" to get reports by vendors name
+6) Enter "0" to go back to ledger screen.
+
+![Month to date example](images/monthToDateSS.png)

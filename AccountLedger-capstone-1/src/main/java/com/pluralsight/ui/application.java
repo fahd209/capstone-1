@@ -23,8 +23,8 @@ public class application {
         while(!input.equals("X")) {
             try {
                 System.out.println();
-                System.out.println("Home screen");
-                System.out.println("-------------");
+                System.out.println("      Home screen     ");
+                System.out.println("----------------------");
                 System.out.println("D) ADD Deposit");
                 System.out.println("P) Make Payment");
                 System.out.println("L) Ledger");
@@ -83,7 +83,7 @@ public class application {
                 }
                 else
                 {
-                    System.out.println("If you skip the payment amount it will not get be added to the transactions");
+                    System.out.println("Deposit failed try again");
                 }
 
             }
@@ -159,8 +159,8 @@ public class application {
         while(!choice.equals("H"))
         {
             System.out.println();
-            System.out.println("Ledger screen");
-            System.out.println("---------------");
+            System.out.println("     Ledger screen     ");
+            System.out.println("-----------------------");
             System.out.println("A) Display all entries");
             System.out.println("D) Display all deposits");
             System.out.println("P) Display all payments");
@@ -200,12 +200,12 @@ public class application {
 
         //displaying out all entries
         System.out.println();
-        System.out.println("                                                                All entry's                    ");
+        System.out.println(Colors.BACKGROUND_BLACK + Colors.WHITE + "                                                          All Transactions                                                                  " + Colors.RESET);
         System.out.println("-".repeat(140));
         for (int i = 0; i < entries.size(); i++)
         {
             Entry entry = entries.get(i);
-            System.out.printf(" \u001B[34m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
+            System.out.printf(Colors.BACKGROUND_BLACK + Colors.WHITE +" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET + " \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
             System.out.println("-".repeat(140));
         }
 
@@ -219,12 +219,12 @@ public class application {
         ArrayList<Entry> allDeposits = loadEntries.loadAllDeposits();
 
         System.out.println();
-        System.out.println("                                                              All deposits                                        ");
+        System.out.println(Colors.BACKGROUND_BLACK + Colors.GREEN + "                                                          All Deposit's                                                                    " + Colors.RESET);
         System.out.println("-".repeat(140));
         for(int i = 0; i < allDeposits.size(); i++)
         {
             Entry deposits = allDeposits.get(i);
-            System.out.printf(" \u001B[32m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", deposits.getDate(), deposits.getTime(), deposits.getTransActionType(), deposits.getDescription(), deposits.getVendor(), deposits.getAmount());
+            System.out.printf(Colors.BACKGROUND_BLACK + Colors.GREEN + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET + " \n", deposits.getDate(), deposits.getTime(), deposits.getTransActionType(), deposits.getDescription(), deposits.getVendor(), deposits.getAmount());
             System.out.println("-".repeat(140));
         }
 
@@ -238,12 +238,12 @@ public class application {
         ArrayList<Entry> allPayments = loadEntries.loadAllPayments();
 
         System.out.println();
-        System.out.println("                                                          All payments                                                   ");
+        System.out.println(Colors.BACKGROUND_BLACK + Colors.RED + "                                                          All payments                                                                    " + Colors.RESET);
         System.out.println("-".repeat(140));
         for(int i = 0; i < allPayments.size(); i++)
         {
             Entry payment = allPayments.get(i);
-            System.out.printf(" \u001B[31m %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \u001B[0m \n", payment.getDate(), payment.getTime(), payment.getTransActionType(), payment.getDescription(), payment.getVendor(), payment.getAmount());
+            System.out.printf( Colors.BACKGROUND_BLACK + Colors.RED + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET + "\n"  , payment.getDate(), payment.getTime(), payment.getTransActionType(), payment.getDescription(), payment.getVendor(), payment.getAmount());
             System.out.println("-".repeat(140));
         }
 
