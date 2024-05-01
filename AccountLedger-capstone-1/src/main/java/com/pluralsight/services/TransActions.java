@@ -1,4 +1,4 @@
-package com.pluralsight;
+package com.pluralsight.services;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+// writes to the csv file
+// logs deposits and payments
 public class TransActions {
     final static DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ISO_DATE;
     final static DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("kk:mm:ss");
@@ -73,7 +75,7 @@ public class TransActions {
 
     public void logPayment()
     {
-        transActionType = "withdrawal";
+        transActionType = "Withdrawal";
 
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();

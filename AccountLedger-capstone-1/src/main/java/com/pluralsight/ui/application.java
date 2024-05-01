@@ -1,13 +1,17 @@
-package com.pluralsight;
+package com.pluralsight.ui;
 
-import java.security.spec.ECField;
+import com.pluralsight.Model.Entry;
+import com.pluralsight.services.LoadEntries;
+import com.pluralsight.services.TransActions;
+import com.pluralsight.controller.Reports;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class application {
-    private static Scanner userInput = new Scanner(System.in);
+    private static final Scanner userInput = new Scanner(System.in);
     public void run()
     {
         homeScreen();
@@ -70,7 +74,7 @@ public class application {
                 System.out.print("Enter deposit amount: ");
                 String depositInput = userInput.nextLine();
 
-                if(!depositInput.equals(""))
+                if(!depositInput.isEmpty())
                 {
                     double depositAmount = Double.parseDouble(depositInput);
                     TransActions deposit = new TransActions(depositDescription, depositVendor, depositAmount);
@@ -119,7 +123,7 @@ public class application {
                 String paymentInput = userInput.nextLine();
                 //userInput.nextLine();
 
-                if(!paymentInput.equals(""))
+                if(!paymentInput.isEmpty())
                 {
                     double paymentAmount = Double.parseDouble(paymentInput);
                     paymentAmount = paymentAmount * -1;
@@ -129,7 +133,7 @@ public class application {
                 }
                 else
                 {
-                    System.out.println("If you skip the payment amount it will not get be added to the transactions");
+                    System.out.println("Transaction failed try again");
                 }
             }
             catch (InputMismatchException e)
@@ -319,7 +323,7 @@ public class application {
             System.out.println("-".repeat(140));
         }
 
-        if(monthToDateReports.size() == 0)
+        if(monthToDateReports.isEmpty())
         {
             System.out.println("Month to date reports not found");
         }
@@ -327,9 +331,11 @@ public class application {
 
     public void getPreviousMonthReports()
     {
+        // getting all the previous month reports from my getPreviousMonth method in my reports class
         Reports reports = new Reports();
         List<Entry> previousMonthReports = reports.getPreviousMonth();
 
+        // printing all the reports out
         System.out.println("                                                   Previous Month Report's                                                               ");
         System.out.println("-".repeat(140));
         for(int i = 0; i < previousMonthReports.size(); i++)
@@ -347,9 +353,11 @@ public class application {
 
     public void getYearToDateReports()
     {
+        // getting all the year to day reports from my getYearToDay method in my reports class
         Reports reports = new Reports();
         List<Entry> yearToDateReports = reports.getYearToDay();
 
+        // printing the reports out
         System.out.println("                                                   Year to day reports                                                               ");
         System.out.println("-".repeat(140));
         for (int i = 0; i < yearToDateReports.size(); i++)
@@ -388,12 +396,16 @@ public class application {
 
     public void searchByVendor()
     {
+        // prompting user for vendors name
         Reports reports = new Reports();
         System.out.println();
         System.out.print("Enter the vendor name: ");
         String vendor = userInput.nextLine().strip();
+
+        // searching through the reports with searchByVendor method in my reports class
         List<Entry> reportsByVendor = reports.searchByVendor(vendor);
 
+        //printing out the reports
         System.out.println();
         System.out.println("Vendor's name: " + vendor);
         System.out.println("                                                  Report's by vendor                                                              ");
@@ -407,7 +419,7 @@ public class application {
 
         if(reportsByVendor.isEmpty())
         {
-            System.out.println("Vendors not found");
+            System.out.println("Vendor not found");
         }
     }
 }

@@ -185,3 +185,5 @@ public List<Entry> getPreviousMonth()
         return previousMonthReports;
     }
 ```
+
+## Instruction's on how to use the application

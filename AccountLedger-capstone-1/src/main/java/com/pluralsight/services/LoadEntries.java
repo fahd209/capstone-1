@@ -1,4 +1,6 @@
-package com.pluralsight;
+package com.pluralsight.services;
+
+import com.pluralsight.Model.Entry;
 
 import java.io.File;
 import java.io.FileReader;
@@ -9,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+// reads file and loads the transactions
 public class LoadEntries
 {
     public LoadEntries()
@@ -100,7 +103,7 @@ public class LoadEntries
                 Entry entry = new Entry(date, time, transActionType, description, vendor, amount);
 
                 // adding the entry to the object if the transaction type is a deposit
-                if(entry.getTransActionType().equals("Deposit"))
+                if(entry.getTransActionType().equalsIgnoreCase("Deposit"))
                 {
                     allDeposits.add(entry);
                 }
@@ -155,7 +158,7 @@ public class LoadEntries
                 Entry entry = new Entry(date, time, transActionType, description, vendor, amount);
 
                 // adding the entry to the object if the transaction type is a Withdrawal
-                if(entry.getTransActionType().equals("withdrawal"))
+                if(entry.getTransActionType().equalsIgnoreCase("Withdrawal"))
                 {
                     allPayments.add(entry);
                 }

@@ -1,7 +1,9 @@
-package com.pluralsight;
+package com.pluralsight.controller;
+
+import com.pluralsight.Model.Entry;
+import com.pluralsight.services.LoadEntries;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,8 +11,8 @@ public class Reports {
 
     public List<Entry> getMonthToDate()
     {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate firstDayOfTheMonth = currentDate.withDayOfMonth(1);
+        LocalDate currentDate = LocalDate.now(); //<== getting current date
+        LocalDate firstDayOfTheMonth = currentDate.withDayOfMonth(1); // <== getting first day of the current month
         LoadEntries loadEntries = new LoadEntries();
         ArrayList<Entry> allTransactions = loadEntries.loadAllEntries(); //<==getting all the entries
 
@@ -32,13 +34,10 @@ public class Reports {
         ArrayList<Entry> allTransactions = loadEntries.loadAllEntries(); //<== getting all the entries
         LocalDate currentDate = LocalDate.now();
 
-        /* getting the first day of the previous month by substring one month from current month and getting the
-        * first day of that month*/
+        // getting first day of the previous month
         LocalDate firstDayOfPreviousMonth = currentDate.minusMonths(1).withDayOfMonth(1);
 
-        /* getting the last day of the previous month by adding one month to the firstDayOfThePreviousMonth and subtracting one day so that it d
-        * doesn't go to the current month
-        * */
+        // getting the last day of the previous month
         LocalDate lastDayOfPreviousMonth = firstDayOfPreviousMonth.plusMonths(1).minusDays(1);
 
         /*
@@ -59,9 +58,9 @@ public class Reports {
     public List<Entry> getYearToDay ()
     {
         LoadEntries loadEntries = new LoadEntries();
-        ArrayList<Entry> allTransactions = loadEntries.loadAllEntries();
-        LocalDate currentDate = LocalDate.now();
-        LocalDate firstDayOfTheYear = currentDate.withDayOfYear(1);
+        ArrayList<Entry> allTransactions = loadEntries.loadAllEntries(); // <== getting all the transaction
+        LocalDate currentDate = LocalDate.now(); //<== getting current date
+        LocalDate firstDayOfTheYear = currentDate.withDayOfYear(1);  // <== getting the first day of the current year
 
         System.out.println();
         System.out.println("Report's from: " + firstDayOfTheYear + " - " + currentDate);
@@ -80,7 +79,9 @@ public class Reports {
 
         List<Entry> previousYearTransactions = new ArrayList<>();
         LocalDate currentDate = LocalDate.now();
-        LocalDate firstDayOfPreviousYear = LocalDate.of(currentDate.getYear() -1, 1, 1);
+
+        //getting first day of previous year and last day of the previous year
+        LocalDate firstDayOfPreviousYear = LocalDate.of(currentDate.getYear() - 1, 1, 1);
         LocalDate lastDayOfPreviousYear = LocalDate.of(currentDate.getYear() - 1, 12, 31);
 
         System.out.println();
