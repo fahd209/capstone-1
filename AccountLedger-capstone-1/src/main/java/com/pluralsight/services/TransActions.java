@@ -69,7 +69,6 @@ public class TransActions {
         catch (Exception e)
         {
             System.out.println("Something went wrong");
-            e.printStackTrace();
         }
     }
 
@@ -102,7 +101,6 @@ public class TransActions {
         catch (Exception e)
         {
             System.out.println("Something went wrong");
-            e.printStackTrace();
         }
     }
 }

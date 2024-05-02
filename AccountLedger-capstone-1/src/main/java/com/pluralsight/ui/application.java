@@ -45,6 +45,7 @@ public class application {
                         break;
                     case "B":
                         getBalance();
+                        break;
                     case "L":
                         ledgerScreen();
                         break;
@@ -57,7 +58,6 @@ public class application {
                         System.out.println(Colors.RED + "Invalid input" + Colors.RESET);
                 }
             } catch (Exception e) {
-                e.printStackTrace();
                 System.out.println( Colors.RED + "Invalid input" + Colors.RESET);
             }
         }
@@ -134,8 +134,7 @@ public class application {
             catch (Exception e)
             {
                 System.out.println();
-                System.out.println(Colors.RED + "Something went wrong" + Colors.RESET);
-                e.printStackTrace();
+                System.out.println(Colors.RED + "Something went wrong, try again" + Colors.RESET);
             }
         }
     }
@@ -183,8 +182,7 @@ public class application {
             catch (Exception e)
             {
                 System.out.println();
-                System.out.println(Colors.RED + "Something went wrong" + Colors.RESET);
-                e.printStackTrace();
+                System.out.println(Colors.RED + "Something went wrong, try again." + Colors.RESET);
             }
         }
     }
@@ -287,6 +285,7 @@ public class application {
 
     private void reportsScreen()
     {
+        String input = "";
         int choice = 6;
         while(choice != 0)
         {
@@ -302,8 +301,8 @@ public class application {
                 System.out.println(Colors.CYAN + "5) Search by vendor" + Colors.RESET);
                 System.out.println(Colors.CYAN + "0) Go back to ledger page" + Colors.RESET);
                 System.out.print("Enter input:");
-                choice = userInput.nextInt();
-                userInput.nextLine();
+                input = userInput.nextLine().strip().replace(" ", "");
+                choice = Integer.parseInt(input);
 
                 switch (choice)
                 {
@@ -325,7 +324,8 @@ public class application {
                     case 0:
                         break;
                     default:
-                        System.out.println("Invalid input");
+                        System.out.println();
+                        System.out.println(Colors.RED + "Invalid input" + Colors.RESET);
 
                 }
             }
@@ -337,8 +337,8 @@ public class application {
             }
             catch (Exception e)
             {
-                System.out.println("Something went wrong");
-                e.printStackTrace();
+                System.out.println();
+                System.out.println(Colors.RED + "Something went wrong, try again" + Colors.RESET);
             }
         }
 

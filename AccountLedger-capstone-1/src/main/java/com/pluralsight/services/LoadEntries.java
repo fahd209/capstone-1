@@ -63,7 +63,6 @@ public class LoadEntries
         catch (Exception e)
         {
             System.out.println("Ops! Something went wrong");
-            e.printStackTrace();
         }
         return entries;
     }
@@ -116,7 +115,6 @@ public class LoadEntries
         catch (Exception e)
         {
             System.out.println("Ops! Something went wrong");
-            e.printStackTrace();
         }
 
 
@@ -171,7 +169,6 @@ public class LoadEntries
         catch (Exception e)
         {
             System.out.println("Ops! Something went wrong");
-            e.printStackTrace();
         }
 
 
