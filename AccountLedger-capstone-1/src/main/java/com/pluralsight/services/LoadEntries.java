@@ -54,7 +54,6 @@ public class LoadEntries
 
                 // adding it to the array list then returning it
                 entries.add(entry);
-
             }
         }
         catch (IOException e)

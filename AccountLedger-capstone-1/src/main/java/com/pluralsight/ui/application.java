@@ -5,12 +5,12 @@ import com.pluralsight.services.LoadEntries;
 import com.pluralsight.services.TransActions;
 import com.pluralsight.controller.Reports;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+// UI class
 public class application {
     private static final Scanner userInput = new Scanner(System.in);
     public void run()
@@ -24,12 +24,15 @@ public class application {
         while(!input.equals("X")) {
             try {
                 System.out.println();
-                System.out.println("      Home screen     ");
-                System.out.println("----------------------");
-                System.out.println("D) ADD Deposit");
-                System.out.println("P) Make Payment");
-                System.out.println("L) Ledger");
-                System.out.println("X) Exit");
+                System.out.println(Colors.YELLOW + "---Year Up account ledger---" + Colors.RESET);
+                System.out.println();
+                System.out.println(Colors.BACKGROUND_BLACK + "------Home screen-----" + Colors.RESET);
+                System.out.println(Colors.BACKGROUND_BLACK + "----------------------" + Colors.RESET);
+                System.out.println(Colors.GREEN + "D) ADD Deposit" + Colors.RESET);
+                System.out.println(Colors.RED + "P) Make Payment" + Colors.RESET);
+                System.out.println(Colors.CYAN + "B) Balance" + Colors.RESET);
+                System.out.println(Colors.BLUE + "L) Ledger" + Colors.RESET);
+                System.out.println(Colors.RED + "X) Exit" + Colors.RESET);
                 System.out.print("Enter input: ");
                 input = userInput.nextLine().strip().toUpperCase();
                 switch (input)
@@ -40,21 +43,53 @@ public class application {
                     case "P":
                         makePayment();
                         break;
+                    case "B":
+                        getBalance();
                     case "L":
                         ledgerScreen();
                         break;
                     case "X":
-                        System.out.println("Good bye :)");
+                        System.out.println();
+                        System.out.println(Colors.CYAN + "Good bye :)" + Colors.RESET);
                         break;
                     default:
                         System.out.println();
-                        System.out.println("Invalid input");
+                        System.out.println(Colors.RED + "Invalid input" + Colors.RESET);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Invalid input");
+                System.out.println( Colors.RED + "Invalid input" + Colors.RESET);
             }
         }
+    }
+
+    private void getBalance()
+    {
+        LoadEntries loadEntries = new LoadEntries();
+        ArrayList<Entry> allTransaction = loadEntries.loadAllEntries();
+        double balance = 0;
+        double withDrawals = 0;
+        double deposits = 0;
+        for(int i = 0; i < allTransaction.size(); i++)
+        {
+            Entry transaction = allTransaction.get(i);
+            if(transaction.getTransActionType().equalsIgnoreCase("Withdrawal"))
+            {
+                withDrawals += transaction.getAmount();
+            }
+
+            if(transaction.getTransActionType().equalsIgnoreCase("Deposit"))
+            {
+                deposits += transaction.getAmount();
+            }
+        }
+        double withDrawalAbsPostive = Math.abs(withDrawals);
+
+        balance = deposits - withDrawalAbsPostive;
+
+        System.out.println();
+        System.out.println("Your balance is: " + Colors.GREEN + balance + Colors.RESET);
+
     }
 
     private void addDeposit()
@@ -84,14 +119,14 @@ public class application {
                 }
                 else
                 {
-                    System.out.println("Deposit failed try again");
+                    System.out.println(Colors.RED + "Deposit failed try again" + Colors.RESET);
                 }
 
             }
             catch (InputMismatchException e)
             {
                 System.out.println();
-                System.out.println("Invalid input");
+                System.out.println(Colors.RED + "Invalid input" + Colors.RESET);
 
                 // consumes invalid input, so it doesn't get stored into deposit description
                 userInput.nextLine();
@@ -99,7 +134,7 @@ public class application {
             catch (Exception e)
             {
                 System.out.println();
-                System.out.println("Something went wrong");
+                System.out.println(Colors.RED + "Something went wrong" + Colors.RESET);
                 e.printStackTrace();
             }
         }
@@ -134,13 +169,13 @@ public class application {
                 }
                 else
                 {
-                    System.out.println("Transaction failed try again");
+                    System.out.println(Colors.RED + "Transaction failed try again" + Colors.RESET);
                 }
             }
             catch (InputMismatchException e)
             {
                 System.out.println();
-                System.out.println("Invalid input");
+                System.out.println(Colors.RED + "Invalid input" + Colors.RESET);
 
                 // consumes invalid input, so it doesn't get stored into deposit description
                 userInput.nextLine();
@@ -148,7 +183,7 @@ public class application {
             catch (Exception e)
             {
                 System.out.println();
-                System.out.println("Something went wrong");
+                System.out.println(Colors.RED + "Something went wrong" + Colors.RESET);
                 e.printStackTrace();
             }
         }
@@ -160,12 +195,12 @@ public class application {
         while(!choice.equals("H"))
         {
             System.out.println();
-            System.out.println("     Ledger screen     ");
-            System.out.println("-----------------------");
-            System.out.println("A) Display All Transaction");
-            System.out.println("D) Display All Deposits");
-            System.out.println("P) Display All Payments");
-            System.out.println("R) Reports");
+            System.out.println(Colors.BACKGROUND_BLACK + Colors.BLUE + "--------Ledger-screen--------" + Colors.RESET);
+            System.out.println(Colors.BACKGROUND_BLACK + Colors.BLUE + "-----------------------------" + Colors.RESET);
+            System.out.println(Colors.BLUE + "A) Display All Transaction" + Colors.RESET);
+            System.out.println(Colors.GREEN + "D) Display All Deposits" + Colors.RESET);
+            System.out.println(Colors.RED + "P) Display All Payments" + Colors.RESET);
+            System.out.println(Colors.CYAN + "R) Reports" + Colors.RESET);
             System.out.println("H) Home");
             System.out.print("Enter input: ");
             choice = userInput.nextLine().toUpperCase().strip();
@@ -187,7 +222,7 @@ public class application {
                     break;
                 default:
                     System.out.println();
-                    System.out.println("Invalid input");
+                    System.out.println(Colors.RED + "Invalid input" + Colors.RESET);
             }
         }
     }
@@ -201,12 +236,12 @@ public class application {
 
         //displaying out all entries
         System.out.println();
-        System.out.println(Colors.BACKGROUND_BLACK + Colors.WHITE + "                                                          All Transactions                                                                  " + Colors.RESET);
+        System.out.println(Colors.BACKGROUND_BLACK + "                                                          All Transactions                                                                  " + Colors.RESET);
         System.out.println("-".repeat(140));
         for (int i = 0; i < entries.size(); i++)
         {
             Entry entry = entries.get(i);
-            System.out.printf(Colors.BACKGROUND_BLACK + Colors.WHITE +" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET + " \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
+            System.out.printf(Colors.BACKGROUND_BLACK + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET + " \n", entry.getDate(), entry.getTime(), entry.getTransActionType(), entry.getDescription(), entry.getVendor(), entry.getAmount());
             System.out.println("-".repeat(140));
         }
 
@@ -258,14 +293,14 @@ public class application {
             try
             {
                 System.out.println();
-                System.out.println("      Reports      ");
-                System.out.println("-------------------");
-                System.out.println("1) Month To Date");
-                System.out.println("2) Previous Month");
-                System.out.println("3) Year To date");
-                System.out.println("4) Previous Year");
-                System.out.println("5) Search by vendor");
-                System.out.println("0) Go back to ledger page");
+                System.out.println(Colors.BACKGROUND_BLACK + Colors.CYAN +"---------Reports---------" + Colors.RESET);
+                System.out.println(Colors.BACKGROUND_BLACK + Colors.CYAN +"-------------------------" + Colors.RESET);
+                System.out.println( Colors.CYAN + "1) Month To Date" + Colors.RESET);
+                System.out.println(Colors.CYAN + "2) Previous Month" + Colors.RESET );
+                System.out.println(Colors.CYAN + "3) Year To date" + Colors.RESET);
+                System.out.println(Colors.CYAN + "4) Previous Year" + Colors.RESET);
+                System.out.println(Colors.CYAN + "5) Search by vendor" + Colors.RESET);
+                System.out.println(Colors.CYAN + "0) Go back to ledger page" + Colors.RESET);
                 System.out.print("Enter input:");
                 choice = userInput.nextInt();
                 userInput.nextLine();
@@ -298,7 +333,7 @@ public class application {
             {
                 userInput.nextLine();
                 System.out.println();
-                System.out.println("Invalid input please enter a number");
+                System.out.println(Colors.RED + "Invalid input please enter a number" + Colors.RESET);
             }
             catch (Exception e)
             {
@@ -326,7 +361,7 @@ public class application {
 
         if(monthToDateReports.isEmpty())
         {
-            System.out.println("Month to date reports not found");
+            System.out.println(Colors.RED +"Month to date reports not found" + Colors.RESET);
         }
     }
 
@@ -348,7 +383,7 @@ public class application {
 
         if(previousMonthReports.isEmpty())
         {
-            System.out.println("Previous months reports not found");
+            System.out.println(Colors.RED + "Previous months reports not found" + Colors.RESET);
         }
     }
 
@@ -370,7 +405,7 @@ public class application {
 
         if(yearToDateReports.isEmpty())
         {
-            System.out.println("Year to date reports not found");
+            System.out.println(Colors.RED + "Year to date reports not found" + Colors.RESET);
         }
     }
 
@@ -391,7 +426,7 @@ public class application {
 
         if(previousYearReports.isEmpty())
         {
-            System.out.println("Previous year's report's not found");
+            System.out.println(Colors.RED + "Previous year's report's not found" + Colors.RESET);
         }
     }
 
@@ -420,7 +455,7 @@ public class application {
 
         if(reportsByVendor.isEmpty())
         {
-            System.out.println("Vendor not found");
+            System.out.println(Colors.RED + "Vendor not found" + Colors.RESET);
         }
     }
 }

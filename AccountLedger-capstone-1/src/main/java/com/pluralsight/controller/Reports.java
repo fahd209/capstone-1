@@ -77,7 +77,6 @@ public class Reports {
         LoadEntries loadEntries = new LoadEntries();
         ArrayList<Entry> allTransactions = loadEntries.loadAllEntries();
 
-        List<Entry> previousYearTransactions = new ArrayList<>();
         LocalDate currentDate = LocalDate.now();
 
         //getting first day of previous year and last day of the previous year
@@ -87,7 +86,7 @@ public class Reports {
         System.out.println();
         System.out.println("Reports from: " + firstDayOfPreviousYear + " - " + lastDayOfPreviousYear);
 
-        previousYearTransactions = allTransactions.stream()
+        List<Entry> previousYearTransactions = allTransactions.stream()
                 .filter(reports -> !reports.getDate().isBefore(firstDayOfPreviousYear))
                 .filter(reports -> !reports.getDate().isAfter(lastDayOfPreviousYear))
                 .toList();
