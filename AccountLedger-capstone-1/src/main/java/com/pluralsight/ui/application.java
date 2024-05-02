@@ -5,6 +5,7 @@ import com.pluralsight.services.LoadEntries;
 import com.pluralsight.services.TransActions;
 import com.pluralsight.controller.Reports;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -161,9 +162,9 @@ public class application {
             System.out.println();
             System.out.println("     Ledger screen     ");
             System.out.println("-----------------------");
-            System.out.println("A) Display all entries");
-            System.out.println("D) Display all deposits");
-            System.out.println("P) Display all payments");
+            System.out.println("A) Display All Transaction");
+            System.out.println("D) Display All Deposits");
+            System.out.println("P) Display All Payments");
             System.out.println("R) Reports");
             System.out.println("H) Home");
             System.out.print("Enter input: ");
@@ -257,7 +258,7 @@ public class application {
             try
             {
                 System.out.println();
-                System.out.println("Reports");
+                System.out.println("      Reports      ");
                 System.out.println("-------------------");
                 System.out.println("1) Month To Date");
                 System.out.println("2) Previous Month");
@@ -319,7 +320,7 @@ public class application {
         for(int i = 0; i < monthToDateReports.size(); i++)
         {
             Entry MonthToDateTransaction = monthToDateReports.get(i);
-            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", MonthToDateTransaction.getDate(), MonthToDateTransaction.getTime(), MonthToDateTransaction.getTransActionType(), MonthToDateTransaction.getDescription(), MonthToDateTransaction.getVendor(), MonthToDateTransaction.getAmount());
+            System.out.printf(Colors.BACKGROUND_WHITE + Colors.BLACK + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET+ " \n", MonthToDateTransaction.getDate(), MonthToDateTransaction.getTime(), MonthToDateTransaction.getTransActionType(), MonthToDateTransaction.getDescription(), MonthToDateTransaction.getVendor(), MonthToDateTransaction.getAmount());
             System.out.println("-".repeat(140));
         }
 
@@ -341,7 +342,7 @@ public class application {
         for(int i = 0; i < previousMonthReports.size(); i++)
         {
             Entry previousMonthTransactions = previousMonthReports.get(i);
-            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", previousMonthTransactions.getDate(), previousMonthTransactions.getTime(), previousMonthTransactions.getTransActionType(), previousMonthTransactions.getDescription(), previousMonthTransactions.getVendor(), previousMonthTransactions.getAmount());
+            System.out.printf(Colors.BACKGROUND_WHITE + Colors.BLACK + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET+ " \n", previousMonthTransactions.getDate(), previousMonthTransactions.getTime(), previousMonthTransactions.getTransActionType(), previousMonthTransactions.getDescription(), previousMonthTransactions.getVendor(), previousMonthTransactions.getAmount());
             System.out.println("-".repeat(140));
         }
 
@@ -363,7 +364,7 @@ public class application {
         for (int i = 0; i < yearToDateReports.size(); i++)
         {
             Entry yearToDay = yearToDateReports.get(i);
-            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", yearToDay.getDate(), yearToDay.getTime(), yearToDay.getTransActionType(), yearToDay.getDescription(), yearToDay.getVendor(), yearToDay.getAmount());
+            System.out.printf(Colors.BACKGROUND_WHITE + Colors.BLACK + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET + " \n", yearToDay.getDate(), yearToDay.getTime(), yearToDay.getTransActionType(), yearToDay.getDescription(), yearToDay.getVendor(), yearToDay.getAmount());
             System.out.println("-".repeat(140));
         }
 
@@ -384,7 +385,7 @@ public class application {
         for (int i = 0; i < previousYearReports.size(); i++)
         {
             Entry previousYear = previousYearReports.get(i);
-            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", previousYear.getDate(), previousYear.getTime(), previousYear.getTransActionType(), previousYear.getDescription(), previousYear.getVendor(), previousYear.getAmount());
+            System.out.printf(Colors.BACKGROUND_WHITE + Colors.BLACK + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET + " \n", previousYear.getDate(), previousYear.getTime(), previousYear.getTransActionType(), previousYear.getDescription(), previousYear.getVendor(), previousYear.getAmount());
             System.out.println("-".repeat(140));
         }
 
@@ -413,7 +414,7 @@ public class application {
         for (int i = 0; i < reportsByVendor.size(); i++)
         {
             Entry transactionsByVendor = reportsByVendor.get(i);
-            System.out.printf(" %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f \n", transactionsByVendor.getDate(), transactionsByVendor.getTime(), transactionsByVendor.getTransActionType(), transactionsByVendor.getDescription(), transactionsByVendor.getVendor(), transactionsByVendor.getAmount());
+            System.out.printf(Colors.BACKGROUND_WHITE + Colors.BLACK + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET+ " \n", transactionsByVendor.getDate(), transactionsByVendor.getTime(), transactionsByVendor.getTransActionType(), transactionsByVendor.getDescription(), transactionsByVendor.getVendor(), transactionsByVendor.getAmount());
             System.out.println("-".repeat(140));
         }
 
