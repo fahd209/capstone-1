@@ -17,7 +17,7 @@ public class Reports {
         ArrayList<Entry> allTransactions = loadEntries.loadAllEntries(); //<==getting all the entries
 
         /* filtering through the reports and checking if a reports date is not before the first day of the month
-        and also checking its not after the current date then adding it to the list  */
+        and also checking it's not after the current date then adding it to the list  */
         System.out.println();
         System.out.println("Report's from: " + firstDayOfTheMonth + " - " + currentDate);
         List<Entry> monthToDay = allTransactions.stream()

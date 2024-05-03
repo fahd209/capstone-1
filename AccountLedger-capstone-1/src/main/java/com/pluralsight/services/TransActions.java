@@ -40,7 +40,7 @@ public class TransActions {
         LocalDate date = LocalDate.now();
         LocalTime time = LocalTime.now();
 
-        // checking if file exists if it doesn't then we create it
+        // checking if file exists, if it doesn't then we create it
         File directory = new File(LOG_DIRECTORY);
         if (!directory.exists())
         {
@@ -84,7 +84,7 @@ public class TransActions {
         // reading the file
         try(
                 FileWriter fileWriter = new FileWriter(transactionLogs, true);
-                PrintWriter writer = new PrintWriter(fileWriter);
+                PrintWriter writer = new PrintWriter(fileWriter)
         )
         {
             // logging the payment info to the transaction file with date and time
