@@ -5,6 +5,8 @@ import com.pluralsight.services.LoadEntries;
 import com.pluralsight.services.TransActions;
 import com.pluralsight.controller.Reports;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -299,6 +301,7 @@ public class application {
                 System.out.println(Colors.CYAN + "3) Year To date" + Colors.RESET);
                 System.out.println(Colors.CYAN + "4) Previous Year" + Colors.RESET);
                 System.out.println(Colors.CYAN + "5) Search by vendor" + Colors.RESET);
+                System.out.println(Colors.CYAN + "6) Custom search" + Colors.RESET);
                 System.out.println(Colors.CYAN + "0) Go back to ledger page" + Colors.RESET);
                 System.out.print("Enter input:");
                 input = userInput.nextLine().strip().replace(" ", "");
@@ -321,6 +324,9 @@ public class application {
                     case 5:
                         searchByVendor();
                         break;
+                    case 6:
+                        getCustomSearchInput();
+                        break;
                     case 0:
                         break;
                     default:
@@ -338,7 +344,7 @@ public class application {
             catch (Exception e)
             {
                 System.out.println();
-                System.out.println(Colors.RED + "Something went wrong, try again" + Colors.RESET);
+                System.out.println(Colors.RED + "Something went wrong, try again )" + Colors.RESET);
             }
         }
 
@@ -456,6 +462,66 @@ public class application {
         if(reportsByVendor.isEmpty())
         {
             System.out.println(Colors.RED + "Vendor not found" + Colors.RESET);
+        }
+    }
+
+    public void getCustomSearchInput() {
+        String startDateInput = "";
+        String endDateInput = "";
+        String description = "";
+        String vendor = "";
+        String inputAmount = "";
+        double amount = '\0'; // < setting amount default value to null
+        try {
+            System.out.println();
+            System.out.println("Enter date in this format (yyyy-mm-dd)");
+            System.out.print("Enter the start date: ");
+            startDateInput = userInput.nextLine().strip();
+
+            System.out.print("Enter the end date: ");
+            endDateInput = userInput.nextLine().strip();
+
+            System.out.print("Enter transaction description: ");
+            description = userInput.nextLine().strip();
+
+            System.out.print("Enter transaction vendor: ");
+            vendor = userInput.nextLine().strip();
+
+            System.out.print("Enter transaction amount: ");
+            inputAmount = userInput.nextLine().strip();
+
+        } catch (InputMismatchException e) {
+            System.out.println(Colors.RED + "Invalid input" + Colors.RESET);
+        } catch (Exception e) {
+            System.out.println(Colors.RED + "Ops! Something went wrong" + Colors.RESET);
+        }
+
+        startDateInput = startDateInput.isEmpty() ? null : startDateInput;
+        endDateInput = endDateInput.isEmpty() ? null : endDateInput;
+        description = description.isEmpty() ? null : endDateInput;
+        vendor = vendor.isEmpty() ? null : vendor;
+        amount = inputAmount.isEmpty() ? '\0' : Double.parseDouble(inputAmount);
+
+        Reports reports = new Reports();
+        ArrayList<Entry> customSearchTransaction = reports.customSearch(startDateInput, endDateInput, description, vendor, amount);
+
+        displayCustomSearch(customSearchTransaction);
+    }
+
+    public void displayCustomSearch(ArrayList<Entry> customSearchTransaction)
+    {
+        System.out.println("                                                  Custom search transaction                                                              ");
+        System.out.println("-".repeat(140));
+        for(int i = 0; i < customSearchTransaction.size(); i++)
+        {
+            Entry customTransaction = customSearchTransaction.get(i);
+            System.out.printf(Colors.BACKGROUND_WHITE + Colors.BLACK + " %-20s | %-20s | %-20s | %-20s | %-20s | $%-20.2f " + Colors.RESET+ " \n", customTransaction.getDate(), customTransaction.getTime(), customTransaction.getTransActionType(), customTransaction.getDescription(), customTransaction.getVendor(), customTransaction.getAmount());
+            System.out.println("-".repeat(140));
+        }
+
+        if(customSearchTransaction.isEmpty())
+        {
+            System.out.println("Transaction not found");
         }
     }
 }

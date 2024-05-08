@@ -4,8 +4,12 @@ import com.pluralsight.Model.Entry;
 import com.pluralsight.services.LoadEntries;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class Reports {
 
@@ -106,5 +110,26 @@ public class Reports {
 
         return transactionsByVendor;
 
+    }
+
+    public ArrayList<Entry> customSearch(String startDateInput, String endDateInput, String description, String vendor, double amount)
+    {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate startDate = startDateInput == null ? null : LocalDate.parse(startDateInput, format);
+            LocalDate endDate = endDateInput == null ? null : LocalDate.parse(endDateInput, format);
+
+
+        LoadEntries loadEntries = new LoadEntries();
+        ArrayList<Entry> allTransAction = loadEntries.loadAllEntries();
+
+        ArrayList<Entry> customTransaction = (ArrayList<Entry>)  allTransAction.stream()
+                .filter(transaction -> startDateInput == null || !transaction.getDate().isBefore(startDate))
+                .filter(transaction -> endDateInput == null || !transaction.getDate().isAfter(endDate))
+                .filter(transaction -> description == null || transaction.getDescription().equalsIgnoreCase(description))
+                .filter(transaction -> vendor == null || transaction.getVendor().equalsIgnoreCase(vendor))
+                .filter(transaction -> amount == '\0' || transaction.getAmount() == amount)
+                .collect(Collectors.toList());
+
+        return customTransaction;
     }
 }

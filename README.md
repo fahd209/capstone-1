@@ -185,6 +185,36 @@ public List<Entry> getPreviousMonth()
         return previousMonthReports;
     }
 ```
+## added custom search
+
+Added custom search to the project allowing user to filter through the transaction with start date, end date, description, vendor, and amount.
+
+code used for that: 
+
+```java
+public ArrayList<Entry> customSearch(String startDateInput, String endDateInput, String description, String vendor, double amount)
+    {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate startDate = startDateInput == null ? null : LocalDate.parse(startDateInput, format);
+            LocalDate endDate = endDateInput == null ? null : LocalDate.parse(endDateInput, format);
+
+
+        LoadEntries loadEntries = new LoadEntries();
+        ArrayList<Entry> allTransAction = loadEntries.loadAllEntries();
+
+        ArrayList<Entry> customTransaction = (ArrayList<Entry>)  allTransAction.stream()
+                .filter(transaction -> startDateInput == null || !transaction.getDate().isBefore(startDate))
+                .filter(transaction -> endDateInput == null || !transaction.getDate().isAfter(endDate))
+                .filter(transaction -> description == null || transaction.getDescription().equalsIgnoreCase(description))
+                .filter(transaction -> vendor == null || transaction.getVendor().equalsIgnoreCase(vendor))
+                .filter(transaction -> amount == '\0' || transaction.getAmount() == amount)
+                .collect(Collectors.toList());
+
+        return customTransaction;
+    }
+```
+
+![customSearchImage](images/customSearch.png)
 
 # Instruction's on how to use the application
 ## Home Screen
@@ -214,6 +244,8 @@ When the application starts this how it will look.
 3) Enter "3" to get reports from Year to date.
 4) Enter "4" to get reports from Previous year
 5) Enter "5" to get reports by vendors name
-6) Enter "0" to go back to ledger screen.
+6) Enter "6" to custom filter the reports
+7) Enter "0" to go back to ledger screen.
 
 ![Month to date example](images/monthToDateSS.png)
+
