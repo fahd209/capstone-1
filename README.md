@@ -247,5 +247,5 @@ When the application starts this how it will look.
 6) Enter "6" to custom filter the reports
 7) Enter "0" to go back to ledger screen.
 
-![Month to date example](images/monthToDateSS.png)
+![Month to date example](images/MonthToDatess2.png)
 
