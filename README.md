@@ -4,10 +4,6 @@ I created a account ledger project that will allow the user to make a deposit, a
 
 This is how i started planning out my project
 
-![diagram1](images/diagram1.png)
-
-This is how I ended
-
 ![digram1](images/diagramfinal.png)
 
 ## home screen
